@@ -29,6 +29,7 @@
             </svg>
         </router-link>
     </nav>
+    <div class="gap"></div>
 </template>
 
 <script>
@@ -43,6 +44,11 @@
         margin-bottom: 10px;
         display: flex;
         justify-content: space-between;
+        width: 100%;
+        position: fixed;
+        top: 10px;
+        left: 0;
+        z-index: 2;
 
         div {
             width: 200px;
@@ -59,5 +65,8 @@
             }
         }
 
+    }
+    .gap{
+       height: 30px;
     }
 </style>

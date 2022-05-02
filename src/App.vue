@@ -1,12 +1,12 @@
 <template>
-    <HeaderCom/>
     <router-view/>
+    <MusicControl/>
 </template>
 <script>
-  import HeaderCom from "@/components/header/HeaderCom";
+    import MusicControl from "@/components/music-control/MusicControl";
     export default {
         name:'App',
-        components:{HeaderCom}
+        components:{MusicControl}
     }
 </script>
 

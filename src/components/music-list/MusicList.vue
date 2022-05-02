@@ -5,9 +5,15 @@
     <div class="swiper-container swiper-music-list">
         <div class="swiper-wrapper">
             <div class="swiper-slide" v-for="i of musicList">
-                <img :src="i.picUrl" alt="">
-                <span>{{i.playCount}}</span>
-                <p>{{i.name}}</p>
+                <router-link :to="{
+                    path:'/list-view',
+                    query:{id:i.id,}
+                }"
+                >
+                    <img :src="i.picUrl" alt="">
+                    <span>{{i.playCount>100000000?(i.playCount/100000000).toFixed(2)+'亿':(i.playCount/10000).toFixed(2)+'万'}}</span>
+                    <p>{{i.name}}</p>
+                </router-link>
             </div>
         </div>
     </div>
@@ -25,8 +31,11 @@
                 musicList: []
             }
         },
-        mounted() {
+        created() {
             this.getMusicListData()
+
+        },
+        updated() {
             const mySwiper = new Swiper('.swiper-music-list', {
                 slidesPerView: 3,
                 spaceBetween: 20,
@@ -36,7 +45,6 @@
             async getMusicListData() {
                 const res = await getMusicList(10)//使用封装好的API去调取后台的歌单
                 this.musicList = res.data.result
-                console.log(this.musicList)
             }
         },
 
@@ -58,6 +66,11 @@
         width: 30vw;
         font-size: 12px;
         text-align: left;
+
+        a {
+            text-decoration: none;
+            color: #000;
+        }
 
         img {
             width: 100%;

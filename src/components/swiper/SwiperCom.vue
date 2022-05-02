@@ -4,7 +4,6 @@
             <div class="swiper-slide" v-for="item in imgs" :key="item.id">
                 <img :src="item.pic" alt="">
             </div>
-
         </div>
     </div>
 </template>
@@ -30,15 +29,20 @@
         },
         created() {
             this.getBannerImgs()
+            /*
+            data里默认是空数组，created时候，向后台要数据，更新data
+            之后用新数据渲染页面，检测数据被修改之后用updatad操作dom
+            */
         },
-        mounted() {
+        updated() {
             //以下代码要操作DOM
             /*created,项目创建后
             mounted,挂载之后（Vue实例挂载到真实dom对象上）,当vue实例挂载dom之后，在实例中才有真实dom存在
             */
             var mySwiper = new Swiper('.swiper-home', {//引号里面，可以用id名，class名皆可，只要能找到对应的container就行
                 loop: true,
-                autoplay: true
+                autoplay: true,
+                centeredSlides: true,
             })
         },
         methods: {
@@ -54,7 +58,9 @@
 <style scoped>
 
     .swiper-slide > img {
-        width: 100%;
+        width: 90%;
+        margin-left: 5vw;
+        border-radius: 10px;
     }
 </style>
 
